@@ -1,0 +1,290 @@
+##### Copyright 2022 Niculici Mihai-Daniel (mihai.viper90@gmail.com)
+
+			my_octave
+	
+The file contains 2 libraries: <stdio.h> and <stdlib.h>.
+ I use the numbers 1 and 10007 many times in the code,
+ so I defined them above the code. I use a structure in
+ which I store the matrix and its dimensions.
+
+The program contains 20 functions:
+- alloc_array_of_matrix
+- mat_cp
+- free_matrix
+- free_mat
+- realloc_array
+- alloc_array
+- matrix_alloc
+- matrix_calloc
+- alloc_matrix
+- dim_matrix
+- print_matrix
+- redim_matrix
+- multiplication_matrix
+- sum_mat
+- sort_matrix
+- transpose_matrix
+- elim_matrix
+- matrix_x_matrix
+- power_matrix
+- main
+
+	alloc_array_of_matrix
+
+Parameters:
+- array (the address of the array of matrices)
+- capacity (the address of the capacity of the array)
+
+I use a temporary pointer to allocate the array of matrix
+Then I set the pointer of the array to the temporary pointer
+
+	mat_cp
+
+Parameters:
+- source (The matrix that I want to copy)
+- rows (number of rows of the source matrix)
+- columns (number of columns of the source matrix)
+- dest (The matrix where I want to copy the source matrix)
+
+I copy the source matrix into the dest matrix
+
+	free_matrix
+
+Parameters:
+- array (the array of matrices)
+- index_array (the number of matrices in the array)
+
+Here I free each matrix in the array of matrices
+
+	free_mat
+	
+Parameters:
+- mat (The matrix that I want to free)
+- rows (Number of rows of the matrix)
+
+This function frees one matrix using the number of rows.
+
+	realloc_array
+	
+Parameters:
+- array (the array of matrices)
+- capacity (the maximum number of matrices that fit in array)
+
+I increase the capacity of the array and then I use
+a temporary array to realloc the array of matrices.
+
+	alloc_array
+	
+Parameters:
+- rows (the number of elements that the array will have)
+- array (the array of ints that will be allocated)
+
+I use a temporary array to allocate the array of ints
+Then I set the pointer of the array to the pointer of the
+temporary one.
+
+	matrix_alloc
+
+Parameters:
+- rows (The number of rows of the matrix)
+- columns (The number of columns of the matrix)
+- mat (the matrix that I will be allocated)
+
+I use a temporary matrix to allocate the matrix using the
+number of rows and the number of columns of the matrix that
+I want to allocate.
+Then I set the pointer of the matrix to the pointer of the
+temporary one.
+
+	matrix_calloc
+
+Parameters:
+- rows (The number of rows of the matrix)
+- columns (The number of columns of the matrix)
+- mat (the matrix that I will be allocated)
+
+This function does the same thing as matrix_alloc but all the
+elements of the matrix are equal to 0.
+
+	alloc_matrix
+	
+Parameters:
+- array (the array of matrices)
+- index (the number of matrices in the array)
+
+I read the number of rows and columns that the matrix will have.
+I use the function matrix_alloc to allocate the matrix,
+then I read each element of the matrix.
+I increase the index by 1 because I add 1 matrix to the array of matrices.
+
+	dim_matrix
+
+Parameters:
+- array (the array of matrices)
+- index_array (the number of matrices in the array)
+
+First I read the index of the matrix that I want to print the dimensions
+I verify if the matrix exists and then I print the dimensions
+
+	print_matrix
+
+Parameters:
+- array (the array of matrices)
+- index_array (the number of matrices in the array)
+
+First I read the index of the matrix that I want to print.
+I verify if the matrix exists and then I print the matrix
+	
+	redim_matrix
+	
+Parameters:
+- array (the array of matrices)
+- index_array (the number of matrices in the array)
+
+I read how many rows will have the redimensioned matrix and the indexes
+of each row and store them in an array. I do the same thing for the columns.
+I verify if the matrix exists and then I use a temporary matrix to store
+the redimensioned matrix.
+I free the initial matrix, I allocate it again with new dimensions and then
+I copy the temporary matrix into the initial one.
+At the end, I free all the temporary arrays and matrix.
+
+	multiplication_matrix
+
+Parameters:
+- arr (the array of matrices)
+- ind (the number of matrices in the array)
+
+I read the indexes of the 2 matrices that I want to multiply.
+Then, I verify if the matrices exists and if the number of columns
+of the first matrix is equal to the number of rows of the second matrix
+(To perform multiplication).
+I set the dimensions of the new matrix according to the multiplication rules
+I allocate the new matrix using 'calloc' to make all the elements equal to 0
+I do the multiplication and then
+I increase the number of matrices in the array because the result of the
+multiplication will be added to the array of matrices.
+
+	sum_mat
+	
+Parameters:
+- mat (the matrix to which I want to calculate its sum)
+- rows (the number of rows of the matrix)
+- columns (the number of columns of the matrix)
+
+I use a variable initialized with 0 to store the sum.
+Then, I calculate the sum of each element of the matrix.
+After I add each element, I % 10007 the sum.
+
+	sort_matrix
+	
+Parameters:
+- arr (the array of matrices)
+- index_arr (the number of matrices in the array)
+
+I use a basic sorting algorithm adapted to matrices.
+For each matrix I calculate the sum and then I compare them and
+make the swap where needed.
+To make the swap, I need a temporary matrix to store the matrix 'i'.
+I free and allocate the matrix 'i' with the dimensions
+of the matrix 'j' and then copy the matrix 'j' into it.
+I free and allocate the matrix 'j' with the dimensions
+of the matrix 'i' and then copy the matrix 'aux' into it.
+I free the temporary matrix. I change the dimensions of the 2 matrices
+
+	transpose_matrix
+	
+Parameters:
+- array (the array of matrices)
+- index_array (the number of matrices in the array)
+
+I read the index of the matrix that I want to transpose
+I use a temporary matrix with the dimensions that the
+transposed matrix will have.
+I calculate the transposed matrix and store it in the
+temporary matrix. Then, I free the initial matrix
+I allocate the initial matrix with the transposed matrix dimensions
+I copy the temporary matrix into the initial matrix
+I free the temporary matrix and change the dimensions of the initial matrix.
+
+	elim_matrix
+
+Parameters:
+- arr (the array of matrices)
+- index_arr (the number of matrices in the array)
+I read the index of the matrix that I want to eliminate and verify
+if the matrix exists. I adapted the elimination of a number in an array
+to matrices. I free the matrix that I want to eliminate.
+I allocate the matrix 'i + 1' in the place of matrix 'i' and then
+copy the matrix 'i + 1' there.
+I change the matrix dimensions
+I do this for all matrices from the index of the matrix given to the index
+of the last matrix.
+I free the memory of te last matrix because it is no longer used.
+
+	matrix_x_matrix
+	
+Parameters:
+- mat1 (the first matrix of the multiplication)
+- mat2 (the second matrix of the multiplication)
+- rez (the matrix where I store the result of the multiplication)
+- ind (the index of the matrix that I want to raise to a power)
+- array (the array of matrices)
+
+I use this function to raise a matrix to a power.
+This function multiplies 2 matrices and returns the result in a matrix
+given as parameter. To perform the multiplication I use a temporary matrix
+At the end I free the first matrix because it will be replaced bt the result
+
+	power_matrix
+
+Parameters:
+- arr (the array of matrices)
+- index_arr (the number of matrices in the array)
+
+I read the index of matrix and the power that I want to raise the matrix to.
+I verify if the matrix exists, if the power is positive and
+if I can perform the multiplication.
+If the power is 0, I return unit matrix.
+if the power is 1, I return the matrix given.
+if the power is bigger than 2,
+To raise a matrix to a power, I need 2 temporary matrices
+In the first one I put the unit matrix.
+In the second one I put the matrix given.
+I adapted the algorithm given
+of raising a number to a power to raising a matrix to a power
+I free the initial matrix
+I give the initial matrix the pointer of the first temporary matrix
+Then I free the second matrix.
+
+	main
+	
+Variables:
+- array (an array of struct that stores a matrix and its dimensions)
+- index_ array (the number of matrices in the array)
+- capacity (the maximum number of matrices that can fit in the array)
+- command (The caracter that I read to perform the commands)
+
+I allocate the array of matrices
+And then I read commands and verify if the command fits the command given.
+If I encounter 'L' I verify if I need to reallocate and then use function
+'alloc_matrix' and then I read the next command.
+If I encounter 'D' I use function 'dim_matrix' and then
+I read the next command.
+If I encounter 'P' I use function 'print_matrix' and then
+I read the next command.
+If I encounter 'C' I use function 'redim_matrix' and then
+I read the next command.
+If I encounter 'M' I verify if I need to reallocate and then use function
+'multiplication_matrix' and then I read the next command.
+If I encounter 'O' I use function 'sort_matrix' and then
+I read the next command.
+If I encounter 'T' I use function 'transpose_matrix' and then
+I read the next command.
+If I encounter 'R' I use function 'power_matrix' and then
+I read the next command.
+If I encounter 'F' I use function 'elim_matrix' and then
+I read the next command.
+The program exits when I read 'Q'. (I free memory and quit)
+If the command is not either of the commands above, i print
+"Unrecognized command"
